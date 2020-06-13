@@ -26,6 +26,44 @@ export default class Data {
         return fetch(url, options);
     }
 
+    async getCourses() {
+        const response = await this.api('/courses', 'GET');
+        if (response.status === 200) {
+
+            const courses = await response.json()
+                .then(data => data);
+            // console.log(courses);
+            return courses;
+        }
+        else if (response.status === 400) {
+            return response.json().then(data => {
+                return data.errors;
+            });
+        }
+        else {
+            throw new Error();
+        }
+    }
+
+    async getCourse(id){
+        const response = await this.api(`/courses/${id}`, 'GET');
+        if (response.status === 200) {
+            const course = await response.json()
+                .then(data => data);
+            //console.log(course);
+            return course;
+        }
+        else if (response.status === 400) {
+            return response.json()
+                .then(data => {
+                    return data.errors;
+                });
+        }
+        else {
+            throw new Error();
+        }
+    }
+
 }
 
 
