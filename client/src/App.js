@@ -9,14 +9,22 @@ import './App.css';
 
 //import components
 import Courses from "./components/Courses";
+import CourseDetail from "./components/CourseDetail";
 
 class App extends Component {
+
     render(){
         return (
             <Router>
                 <div className="App">
                     <Switch>
-                    <Route path="/courses" component={Courses} />
+                        <Route exact path="/" render={() => <Redirect to="/courses"/>} />
+                        <Route exact path="/courses" component={Courses} />
+                        <Route path="/courses/:id" render={({match}) => (
+                            <CourseDetail
+                                routeMatch={match}
+                            />
+                            )} />
                     </Switch>
                 </div>
             </Router>

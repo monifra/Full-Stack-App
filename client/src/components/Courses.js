@@ -32,7 +32,7 @@ export default class Courses extends Component {
                <div className="grid-33">
                    <a className="course--module course--link" href="course-detail.html">
                         <h4 className="course--label">Course</h4>
-                        <h3 class="course--title">{ result.title }</h3>
+                        <h3 className="course--title">{ result.title }</h3>
                    </a>
                </div>
             )
