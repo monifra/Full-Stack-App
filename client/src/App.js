@@ -9,6 +9,7 @@ import './App.css';
 import Courses from "./components/Courses";
 import CreateCourse from "./components/CreateCourse";
 import CourseDetail from "./components/CourseDetail";
+import UserSignIn from "./components/UserSignIn";
 
 import Header from "./components/Header";
 
@@ -17,6 +18,7 @@ import withContext from './Context';
 
 const CoursesWithContext = withContext(Courses);
 const CourseDetailWithContext = withContext(CourseDetail);
+const UserSignInWithContext = withContext(UserSignIn);
 
 class App extends Component {
 
@@ -32,6 +34,7 @@ class App extends Component {
                             <Route exact path="/courses" component={CoursesWithContext} />
                             <Route path="/courses/create" component={CreateCourse} />
                             <Route path="/courses/:id" component={CourseDetailWithContext} />
+                            <Route path='/signin' component={ UserSignInWithContext } />
                         </Switch>
                     </div>
                 </div>
