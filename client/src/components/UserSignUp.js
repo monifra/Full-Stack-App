@@ -42,7 +42,6 @@ export default class UserSignUp extends Component {
                                         id="firstName"
                                         name="firstName"
                                         type="text"
-                                        className=""
                                         value={firstName}
                                         onChange={this.change}
                                         placeholder="First Name" />
@@ -50,7 +49,6 @@ export default class UserSignUp extends Component {
                                         id="lastName"
                                         name="lastName"
                                         type="text"
-                                        className=""
                                         value={lastName}
                                         onChange={this.change}
                                         placeholder="Last Name" />
@@ -58,7 +56,6 @@ export default class UserSignUp extends Component {
                                         id="emailAddress"
                                         name="emailAddress"
                                         type="email"
-                                        className=""
                                         value={emailAddress}
                                         onChange={this.change}
                                         placeholder="Email Address" />
@@ -117,7 +114,8 @@ export default class UserSignUp extends Component {
             password,
         };
 
-        context.data.createUser(user)
+        context.data
+            .createUser(user)
             .then( errors => {
                 if (errors.length) {
                     this.setState({ errors });

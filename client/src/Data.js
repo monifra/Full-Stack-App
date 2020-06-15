@@ -39,7 +39,7 @@ export default class Data {
         }
     }
 
-    async createUser(emailAddress, password, user) {
+    async createUser(user) {
         const response = await this.api('/users', 'POST', user);
         if (response.status === 201) {
             return [];
@@ -74,8 +74,11 @@ export default class Data {
         }
     }
     //DIDN'T CHECK IF IT'S WORKING
-    async creteCourse(course){
-        const response = await this.api('/courses/create', 'POST', course);
+    async createCourse(emailAddress, password, course){
+        const response = await this.api('/courses', 'POST', course, true, {
+            emailAddress,
+            password
+        });
         if (response.status === 201) {
             return [];
         } else if (response.status === 400) {
