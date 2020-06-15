@@ -10,15 +10,18 @@ import Courses from "./components/Courses";
 import CreateCourse from "./components/CreateCourse";
 import CourseDetail from "./components/CourseDetail";
 import UserSignIn from "./components/UserSignIn";
+import UserSignUp from "./components/UserSignUp";
 
 import Header from "./components/Header";
 
 // Context (to be able to get app data without passing props)
 import withContext from './Context';
 
+
 const CoursesWithContext = withContext(Courses);
 const CourseDetailWithContext = withContext(CourseDetail);
 const UserSignInWithContext = withContext(UserSignIn);
+const UserSignUpWithContext = withContext(UserSignUp);
 
 class App extends Component {
 
@@ -35,6 +38,7 @@ class App extends Component {
                             <Route path="/courses/create" component={CreateCourse} />
                             <Route path="/courses/:id" component={CourseDetailWithContext} />
                             <Route path='/signin' component={ UserSignInWithContext } />
+                            <Route path='/signup' component={ UserSignUpWithContext } />
                         </Switch>
                     </div>
                 </div>
