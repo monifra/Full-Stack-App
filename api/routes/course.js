@@ -123,8 +123,9 @@ router.post('/courses',[
         .exists({ checkNull: true, checkFalsy: true })
         .withMessage('Please provide a value for "description"'),
 
-] ,authenticateUser, asyncHandler(async(req,res,next)=>{
+] ,authenticateUser, asyncHandler(async(req,res)=>{
     // Attempt to get the validation result from the Request object.
+    const user = req.currentUser;
     const errors = validationResult(req);
     try{
         // If there are validation errors...
@@ -139,8 +140,8 @@ router.post('/courses',[
         let course;
 
         course = await Course.create(req.body); //creates new course
-        console.log(req.body);
-        console.log(course);
+        // console.log(req.body);
+        // console.log(course);
         const id = course.id;
         res.location(`/courses/${id}`).status(201).end(); //sets URI and gives 201 status
     } catch(error){

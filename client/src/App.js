@@ -11,6 +11,7 @@ import CreateCourse from "./components/CreateCourse";
 import CourseDetail from "./components/CourseDetail";
 import UserSignIn from "./components/UserSignIn";
 import UserSignUp from "./components/UserSignUp";
+import UserSignOut from "./components/UserSignOut";
 
 import Header from "./components/Header";
 
@@ -20,8 +21,11 @@ import withContext from './Context';
 
 const CoursesWithContext = withContext(Courses);
 const CourseDetailWithContext = withContext(CourseDetail);
+const CreateCourseWithContext = withContext(CreateCourse);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignUpWithContext = withContext(UserSignUp);
+const UserSignOutWithContext = withContext(UserSignOut);
+const HeaderWithContext = withContext(Header);
 
 class App extends Component {
 
@@ -30,15 +34,17 @@ class App extends Component {
             <Router>
                 <div id="root">
                     <div>
-                        <Header/>
+                        <HeaderWithContext/>
                         <hr/>
                         <Switch>
                             <Route exact path="/" render={() => <Redirect to="/courses"/>} />
                             <Route exact path="/courses" component={CoursesWithContext} />
-                            <Route path="/courses/create" component={CreateCourse} />
+                            <Route path="/courses/create" component={CreateCourseWithContext} />
                             <Route path="/courses/:id" component={CourseDetailWithContext} />
                             <Route path='/signin' component={ UserSignInWithContext } />
                             <Route path='/signup' component={ UserSignUpWithContext } />
+                            <Route path='/signout' component={ UserSignOutWithContext } />
+
                         </Switch>
                     </div>
                 </div>

@@ -20,7 +20,7 @@ export default class UserSignIn extends Component {
             errors,
         } = this.state;
 
-        const { context } = this.props;
+        // const { context } = this.props;
 
 
         return(

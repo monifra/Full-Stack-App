@@ -77,7 +77,6 @@ export default class UserSignUp extends Component {
                             )}
                         />
                     </div>
-                    <p>&nbsp;</p>
                     <p>Already have a user account? <Link to="/signin">Click here</Link> to sign in!</p>
                 </div>
             </div>
@@ -107,6 +106,7 @@ export default class UserSignUp extends Component {
 
         //PLACE FOR ERROR HANDLER IF FOR CONFIRMING PASSWORD
         // Create user
+        if(password === confirmPassword){
         const user = {
             firstName,
             lastName,
@@ -133,6 +133,10 @@ export default class UserSignUp extends Component {
                 // this.props.history.push('/error');
             });
         //ELSE STATEMENT FOR CONFIRMING PASSWORD
+        } else {
+            //Temporary error console.log
+            console.log('Passwords must be the same');
+        }
     };
 
     cancel = () => {
