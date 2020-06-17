@@ -150,7 +150,58 @@ export default class UpdateCourse extends Component {
                 [name]: value
             };
         });
-    }
+    };
 
     //PLACE FOR SUBMIT HANDLER
+    submit = () => {
+        const {context} = this.props;
+
+        const {
+            courseId,
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded,
+            userId,
+            errors,
+        } = this.state;
+
+        const authUser = context.authenticatedUser;
+
+        const emailAddress = authUser.emailAddress;
+        const password = authUser.password;
+        console.log(emailAddress);
+        console.log(password);
+
+        const course = {
+            courseId,
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded,
+            userId,
+            errors,
+        }
+
+        context.data
+            .updateCourse(courseId, course, emailAddress, password)
+            .then( errors => {
+                if (errors.length) {
+                    this.setState({ errors });
+                } else {
+                    console.log("Course updated");
+                    this.props.history.push('/courses/' + courseId);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                // this.props.history.push('/error');
+            });
+
+    };
+
+    cancel = () => {
+        const { from } = this.props.location.state || { from: { pathname: '/courses' } };
+        this.props.history.push(from);
+    };
 }
