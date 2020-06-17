@@ -6,7 +6,7 @@ import Form from "./Form";
 export default class UpdateCourse extends Component {
 
     state = {
-        author: '',
+        author: [],
         courseId: '',
         title: '',
         description: '',
@@ -19,12 +19,13 @@ export default class UpdateCourse extends Component {
     componentDidMount() {
         const { context } = this.props;
 
-        context.data.getCourse(this.props.match.params.id)
+        context.data
+            .getCourse(this.props.match.params.id)
             .then( course => {
                 if (course) {
                     this.setState({
                         courseId: course.id,
-                        author: course.user,
+                        author: course.User,
                         title: course.title,
                         description: course.description,
                         estimatedTime: course.estimatedTime,
@@ -38,6 +39,9 @@ export default class UpdateCourse extends Component {
                 // this.props.history.push('/error');
             });
     }
+
+    //Cancel don't work
+    //Update don't work because there is no submit function yet
 
 
     render(){

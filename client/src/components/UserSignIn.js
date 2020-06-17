@@ -24,7 +24,6 @@ export default class UserSignIn extends Component {
 
         // const { context } = this.props;
 
-
         return(
             <div className="bounds">
                 <div className="grid-33 centered signin">

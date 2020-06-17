@@ -3,9 +3,10 @@ import React, {Component}  from 'react';
 import { Link } from 'react-router-dom';
 
 export default class CourseDetail extends Component {
+
     state = {
         course: '',
-        user: ''
+        author: [],
     };
 
     //  axiosFunction = async() => {
@@ -25,12 +26,13 @@ export default class CourseDetail extends Component {
         // this.axiosFunction(this.props.routeMatch.params.id);
         const { context } = this.props;
 
-        context.data.getCourse(this.props.match.params.id)
+        context.data
+            .getCourse(this.props.match.params.id)
             .then( course => {
                 if (course) {
                     this.setState({
                         course,
-                        user: course.user
+                        author: course.User,
                     });
                 }
             })
@@ -41,13 +43,17 @@ export default class CourseDetail extends Component {
     }
 
 
-    //NIE DZIALA AUTOR I NIE DZIALA TWORZENIE LISTY MATERIALOW
+    // no styles in needed materials or description
+    // Link to delete work doesn't work because I don't have delete component figure out
+    // Error handler to do
 
    render(){
+       const {
+           course,
+           author,
+       } = this.state;
 
-       const course = this.state.course;
-       const user = this.state.user;
-       console.log(user);
+       const courseId = this.props.match.params.id;
 
        return(
            <div>
@@ -55,7 +61,7 @@ export default class CourseDetail extends Component {
                    <div className="bounds">
                        <div className="grid-100">
                            <span>
-                               <Link className="button" to={'/courses/' + course.id +'/update' }>Update Course</Link>
+                               <Link className="button" to={`/courses/${courseId}/update`}>Update Course</Link>
                                <Link className="button" to="/">Delete Course</Link>
                            </span>
                            <Link className="button button-secondary" to="/">Return to List</Link>
@@ -67,7 +73,7 @@ export default class CourseDetail extends Component {
                        <div className="course--header">
                            <h4 className="course--label">Course</h4>
                            <h3 className="course--title">{course.title}</h3>
-                           <p></p>
+                           <p>By {author.firstName + " " + author.lastName}</p>
                        </div>
                        <div className="course--description">
                            <p>{course.description}</p>
