@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import Form from "./Form";
 
+//DATA FOR TEST SIGN IN email: joe@smith.com password: joepassword
+
 export default class UserSignIn extends Component {
 
     state = {

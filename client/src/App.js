@@ -18,6 +18,8 @@ import Header from "./components/Header";
 // Context (to be able to get app data without passing props)
 import withContext from './Context';
 
+import PrivateRoute from './PrivateRoute';
+
 
 const CoursesWithContext = withContext(Courses);
 const CourseDetailWithContext = withContext(CourseDetail);
@@ -39,7 +41,7 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/" render={() => <Redirect to="/courses"/>} />
                             <Route exact path="/courses" component={CoursesWithContext} />
-                            <Route path="/courses/create" component={CreateCourseWithContext} />
+                            <PrivateRoute path="/courses/create" component={CreateCourseWithContext} />
                             <Route path="/courses/:id" component={CourseDetailWithContext} />
                             <Route path='/signin' component={ UserSignInWithContext } />
                             <Route path='/signup' component={ UserSignUpWithContext } />
