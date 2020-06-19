@@ -153,6 +153,7 @@ export default class CreateCourse extends Component {
             description,
             estimatedTime,
             materialsNeeded,
+            userId,
             errors,
         } = this.state;
 
@@ -163,6 +164,7 @@ export default class CreateCourse extends Component {
             description,
             estimatedTime,
             materialsNeeded,
+            userId,
             errors,
         };
 

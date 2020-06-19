@@ -40,9 +40,9 @@ export default class UpdateCourse extends Component {
             });
     }
 
-    //Cancel don't work
-    //Update don't work because there is no submit function yet
-
+    // Cancel don't work
+    // NO ERROR HANDLERS!!!
+    // EVERYONE CAN CHANGE ALL COURSES AT TE MOMENT ADD CONDITIONAL
 
     render(){
 
