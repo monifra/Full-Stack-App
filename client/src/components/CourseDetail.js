@@ -7,6 +7,7 @@ export default class CourseDetail extends Component {
     state = {
         course: '',
         author: [],
+        authUser: [],
     };
 
     //  axiosFunction = async() => {
@@ -33,12 +34,13 @@ export default class CourseDetail extends Component {
                     this.setState({
                         course,
                         author: course.User,
+                        authUser: context.authenticatedUser
                     });
                 }
             })
             .catch( err => { // handle rejected promises
                 console.log(err);
-                // this.props.history.push('/error'); // push to history stack
+                this.props.history.push('/error'); // push to history stack
             });
     }
 
@@ -62,7 +64,12 @@ export default class CourseDetail extends Component {
                        <div className="grid-100">
                            <span>
                                <Link className="button" to={`/courses/${courseId}/update`}>Update Course</Link>
-                               <Link className="button" to="/">Delete Course</Link>
+                               <button
+                                   className="button"
+                                   onClick={() => this.delete()}
+                               >
+                                   Delete Course
+                               </button>
                            </span>
                            <Link className="button button-secondary" to="/">Return to List</Link>
                         </div>
@@ -99,4 +106,37 @@ export default class CourseDetail extends Component {
            </div>
        );
    }
+
+   delete = () => {
+       const { context } = this.props;
+       //const authUser = context.authenticatedUser;
+       //console.log(authUser);
+
+       const {
+            authUser
+       } = this.state;
+
+       const emailAddress = authUser.emailAddress;
+       const password = authUser.password;
+       // const userId = authUser.id;
+       const courseId = this.props.match.params.id;
+       //console.log(emailAddress);
+       //console.log(password);
+
+       context.data
+           .deleteCourse(emailAddress, password, courseId)
+           .then( errors => {
+               if (errors.length) {
+                   this.setState({ errors });
+               } else {
+                   console.log("Course deleted");
+                   this.props.history.push('/courses');
+               }
+           })
+           .catch((err) => {
+               console.log(err);
+               this.props.history.push('/error');
+           });
+   }
+
 };

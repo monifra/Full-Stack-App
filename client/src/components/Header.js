@@ -8,12 +8,12 @@ export default class Header extends React.PureComponent {
 
         const { context } = this.props;
         const authUser = context.authenticatedUser;
-        console.log(authUser);
-        //Sign OUT IS NOT LINKED!!!
+        //console.log(authUser);
+
         return(
             <div className="header">
                 <div className="bounds">
-                    <h1 className="header--logo">Courses</h1>
+                    <Link to="/"><h1 className="header--logo">Courses</h1></Link>
                     <nav>
                         {  authUser
                             ?(

@@ -42,7 +42,6 @@ export default class Data {
     }
 
     //POST NEW USER TO API /users
-    //DOESN'T WORK!!!
     async createUser(user) {
         const response = await this.api('/users', 'POST', user);
         if (response.status === 201) {
@@ -80,7 +79,6 @@ export default class Data {
     }
 
     //POST NEW COURSE TO API /courses
-    //DOESN'T WORK!!!!
     async createCourse(emailAddress, password, course){
         const response = await this.api('/courses', 'POST', course, true, {
             emailAddress,
@@ -126,6 +124,25 @@ export default class Data {
             return [];
         }
         else if(response.status === 400){
+            return response.json()
+                .then(data => {
+                    return data.errors;
+                });
+        } else {
+            throw new Error();
+        }
+    }
+
+    // DELETE COURSE TO API /courses/:id/
+    async deleteCourse(id, emailAddress, password){
+        const response = await this.api(`/courses/${id}`, 'DELETE', null, true, {
+            emailAddress,
+            password,
+        });
+        if(response.status === 204){
+            return [];
+        }
+        else if(response.status === 404){
             return response.json()
                 .then(data => {
                     return data.errors;

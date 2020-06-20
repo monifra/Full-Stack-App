@@ -36,13 +36,12 @@ export default class UpdateCourse extends Component {
             })
             .catch( err => { // handle rejected promises
                 console.log(err);
-                // this.props.history.push('/error');
+                this.props.history.push('/error');
             });
     }
 
-    // Cancel don't work
     // NO ERROR HANDLERS!!!
-    // EVERYONE CAN CHANGE ALL COURSES AT TE MOMENT ADD CONDITIONAL
+    // EVERYONE CAN CHANGE ALL COURSES AT THE MOMENT ADD CONDITIONAL
 
     render(){
 
@@ -181,7 +180,7 @@ export default class UpdateCourse extends Component {
             materialsNeeded,
             userId,
             errors,
-        }
+        };
 
         context.data
             .updateCourse(courseId, course, emailAddress, password)
@@ -201,7 +200,9 @@ export default class UpdateCourse extends Component {
     };
 
     cancel = () => {
-        const { from } = this.props.location.state || { from: { pathname: '/courses' } };
+        const courseId = this.props.match.params.id;
+        const { from } = this.props.location.state || { from: { pathname: `/courses/${courseId}` } };
+        // console.log(courseId);
         this.props.history.push(from);
     };
 }
