@@ -1,3 +1,5 @@
+//import cookies to work with passwords
+//import Cookies from 'js-cookie';
 import config from './config';
 
 export default class Data {
@@ -135,6 +137,12 @@ export default class Data {
 
     // DELETE COURSE TO API /courses/:id/
     async deleteCourse(id, emailAddress, password){
+
+        //Ideas for working with password
+        // const encryptedPassword = Cookies.get('password');
+        // encoding password with atob()
+        // const password = atob(JSON.parse(encryptedPassword));
+
         const response = await this.api(`/courses/${id}`, 'DELETE', null, true, {
             emailAddress,
             password,
@@ -142,7 +150,7 @@ export default class Data {
         if(response.status === 204){
             return [];
         }
-        else if(response.status === 404){
+        else if(response.status === 403){
             return response.json()
                 .then(data => {
                     return data.errors;

@@ -117,7 +117,7 @@ router.get('/courses/:id', asyncHandler(async(req,res,next)=>{
 // POST api/courses creates a new course, sets the Location header to the URI for the course, returns no content, status 201
 router.post('/courses',[
     check('title')
-        .exists({ checkNull: true})
+        .exists({ checkNull: true, checkFalsy: true })
         .withMessage('Please provide a value for "title"'),
     check('description')
         .exists({ checkNull: true, checkFalsy: true })

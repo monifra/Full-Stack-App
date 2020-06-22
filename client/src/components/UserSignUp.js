@@ -129,8 +129,7 @@ export default class UserSignUp extends Component {
             })
             .catch((err) => {
                 console.log(err);
-                //TO TURN ON WHEN I WRITE ERROR ROUTE
-                // this.props.history.push('/error');
+                    this.props.history.push('/error');
             });
         //ELSE STATEMENT FOR CONFIRMING PASSWORD
         } else {

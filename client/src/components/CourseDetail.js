@@ -44,7 +44,6 @@ export default class CourseDetail extends Component {
             });
     }
 
-
     // no styles in needed materials or description
     // delete gets 401 unauthorized api works Great
     // Error handler to do
@@ -53,10 +52,7 @@ export default class CourseDetail extends Component {
        const {
            course,
            author,
-           authUser,
        } = this.state;
-
-
 
        // let buttons;
 
@@ -84,6 +80,7 @@ export default class CourseDetail extends Component {
                                    {/*    Delete Course*/}
                                    {/*</button>*/}
                                {/*</span>*/}
+
                            {this.AddButtons()}
                            <Link className="button button-secondary" to="/">Return to List</Link>
                         </div>
@@ -120,12 +117,13 @@ export default class CourseDetail extends Component {
            </div>
        );
    }
-   //Method for adding buttons
+   //Method add buttons
+
     AddButtons = () => {
       // const {context} = this.props;
       const courseId = this.props.match.params.id;
       const {authUser, author} = this.state;
-      console.log(author.id);
+      // console.log(author.id);
 
       if (authUser){
           if(author.id === authUser.id){
@@ -140,6 +138,7 @@ export default class CourseDetail extends Component {
     };
 
    // Method for deleting course
+
    delete = () => {
        const { context } = this.props;
        //const authUser = context.authenticatedUser;

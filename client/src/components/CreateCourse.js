@@ -29,13 +29,15 @@ export default class CreateCourse extends Component {
         });
     };
 
-    //NO ERROR HANDLERS!!!
+    //Validation only for description :(
 
     render(){
 
         const {
             errors,
         } = this.state;
+
+        console.log(errors);
 
         return(
             <div className="bounds course--detail">
@@ -173,6 +175,7 @@ export default class CreateCourse extends Component {
         context.data
             .createCourse(emailAddress, password, course)
             .then( errors => {
+                console.log(errors);
                 if (errors.length) {
                     this.setState({ errors });
                 } else {
