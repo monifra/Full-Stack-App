@@ -2,8 +2,6 @@
 import React, {Component}  from 'react';
 import { Link } from 'react-router-dom';
 
-// import Buttons from "./Buttons";
-
 export default class CourseDetail extends Component {
 
     state = {
