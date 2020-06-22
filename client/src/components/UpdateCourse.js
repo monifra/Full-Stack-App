@@ -40,9 +40,6 @@ export default class UpdateCourse extends Component {
             });
     }
 
-    // NO ERROR HANDLERS!!!
-    // EVERYONE CAN CHANGE ALL COURSES AT THE MOMENT ADD CONDITIONAL
-
     render(){
 
         const {
@@ -53,6 +50,8 @@ export default class UpdateCourse extends Component {
             materialsNeeded,
             errors,
         } = this.state;
+
+        // console.log(errors);
 
         return(
             <div className="bounds course--detail">
@@ -151,7 +150,7 @@ export default class UpdateCourse extends Component {
         });
     };
 
-    //PLACE FOR SUBMIT HANDLER
+    //SUBMIT COURSE METHOD
     submit = () => {
         const {context} = this.props;
 
@@ -169,8 +168,8 @@ export default class UpdateCourse extends Component {
 
         const emailAddress = authUser.emailAddress;
         const password = authUser.password;
-        console.log(emailAddress);
-        console.log(password);
+        // console.log(emailAddress);
+        // console.log(password);
 
         const course = {
             courseId,
@@ -185,6 +184,7 @@ export default class UpdateCourse extends Component {
         context.data
             .updateCourse(courseId, course, emailAddress, password)
             .then( errors => {
+                // s
                 if (errors.length) {
                     this.setState({ errors });
                 } else {
@@ -194,7 +194,7 @@ export default class UpdateCourse extends Component {
             })
             .catch((err) => {
                 console.log(err);
-                // this.props.history.push('/error');
+                this.props.history.push('/error');
             });
 
     };

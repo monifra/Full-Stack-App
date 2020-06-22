@@ -46,19 +46,12 @@ export default class CourseDetail extends Component {
 
     // no styles in needed materials or description
     // delete gets 401 unauthorized api works Great
-    // Error handler to do
 
    render(){
        const {
            course,
            author,
        } = this.state;
-
-       // let buttons;
-
-       // if(author.id === authUser.id){
-       //    buttons= <Buttons/>;
-       // }
 
        return(
            <div>

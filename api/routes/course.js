@@ -154,7 +154,7 @@ router.post('/courses',[
 // PUT api/courses/:id updates existing, chosen course, returns no content, status 204
 router.put('/courses/:id',[
     check('title')
-        .exists({ checkNull: true})
+        .exists({ checkNull: true, checkFalsy: true })
         .withMessage('Please provide a value for "title"'),
     check('description')
         .exists({ checkNull: true, checkFalsy: true })

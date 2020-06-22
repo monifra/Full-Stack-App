@@ -29,7 +29,6 @@ export default class CreateCourse extends Component {
         });
     };
 
-    //Validation only for description :(
 
     render(){
 
@@ -37,7 +36,7 @@ export default class CreateCourse extends Component {
             errors,
         } = this.state;
 
-        console.log(errors);
+        // console.log(errors);
 
         return(
             <div className="bounds course--detail">
@@ -147,8 +146,8 @@ export default class CreateCourse extends Component {
 
         const emailAddress = authUser.emailAddress;
         const password = authUser.password;
-        console.log(emailAddress);
-        console.log(password);
+        // console.log(emailAddress);
+        // console.log(password);
 
         const {
             title,
@@ -175,7 +174,7 @@ export default class CreateCourse extends Component {
         context.data
             .createCourse(emailAddress, password, course)
             .then( errors => {
-                console.log(errors);
+                // console.log(errors);
                 if (errors.length) {
                     this.setState({ errors });
                 } else {
