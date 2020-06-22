@@ -135,6 +135,9 @@ export default class UserSignUp extends Component {
         } else {
             //Temporary error console.log
             console.log('Passwords must be the same');
+            this.setState(() => {
+                return { errors: [ 'Passwords must be the same' ] };
+            });
         }
     };
 

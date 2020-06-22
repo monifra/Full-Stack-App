@@ -80,7 +80,7 @@ export default class UserSignIn extends Component {
             .then((user) => {
                 if (user === null) {
                     this.setState(() => {
-                        return { errors: [ 'Sign-in was unsuccessful' ] };
+                        return { errors: [ 'Oh no! Sign-in was unsuccessful' ] };
                     });
                 } else {
                     this.props.history.push(from);
@@ -88,7 +88,7 @@ export default class UserSignIn extends Component {
             })
             .catch((error) => {
                 console.error(error);
-                // this.props.history.push('/error');
+                this.props.history.push('/error');
             });
     }
 
