@@ -3,6 +3,7 @@ import React, {Component}  from 'react';
 
 import Form from "./Form";
 
+
 export default class CreateCourse extends Component {
 
     state = {
@@ -20,6 +21,8 @@ export default class CreateCourse extends Component {
 
     componentDidMount(){
         const { context } = this.props;
+
+
         this.setState(() => {
             return {
                 userId: context.authenticatedUser.id,

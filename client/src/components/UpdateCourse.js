@@ -1,6 +1,6 @@
 //import React
 import React, {Component}  from 'react';
-
+//import { Redirect } from 'react-router-dom';
 import Form from "./Form";
 
 export default class UpdateCourse extends Component {
@@ -14,30 +14,40 @@ export default class UpdateCourse extends Component {
         materialsNeeded: '',
         userId: '',
         errors: [],
+        //redirect: false,
     };
 
     componentDidMount() {
         const { context } = this.props;
 
-        context.data
-            .getCourse(this.props.match.params.id)
-            .then( course => {
-                if (course) {
-                    this.setState({
-                        courseId: course.id,
-                        author: course.User,
-                        title: course.title,
-                        description: course.description,
-                        estimatedTime: course.estimatedTime,
-                        materialsNeeded: course.materialsNeeded,
-                        userId: course.userId,
-                    });
-                }
-            })
-            .catch( err => { // handle rejected promises
-                console.log(err);
-                this.props.history.push('/error');
-            });
+        // const checkIfCourse = this.props.match.params.id;
+        // console.log(checkIfCourse);
+        // if(!checkIfCourse){
+        //     this.setState({
+        //         redirect: true,
+        //     });
+        // } else {
+
+            context.data
+                .getCourse(this.props.match.params.id)
+                .then(course => {
+                    if (course) {
+                        this.setState({
+                            courseId: course.id,
+                            author: course.User,
+                            title: course.title,
+                            description: course.description,
+                            estimatedTime: course.estimatedTime,
+                            materialsNeeded: course.materialsNeeded,
+                            userId: course.userId,
+                        });
+                    }
+                })
+                .catch(err => { // handle rejected promises
+                    console.log(err);
+                    this.props.history.push('/error');
+                });
+        //}
     }
 
     render(){
@@ -52,6 +62,10 @@ export default class UpdateCourse extends Component {
         } = this.state;
 
         // console.log(errors);
+        // redirect if no course exists
+        //if (this.state.redirect) {
+        //    return <Redirect to="/notfound" />;
+        //}
 
         return(
             <div className="bounds course--detail">

@@ -1,6 +1,7 @@
 //import React
 import React, {Component}  from 'react';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 export default class CourseDetail extends Component {
 
@@ -44,8 +45,7 @@ export default class CourseDetail extends Component {
             });
     }
 
-    // no styles in needed materials or description
-    // delete gets 401 unauthorized api works Great
+    //!!! delete gets 401 unauthorized api works Great !!!
 
    render(){
        const {
@@ -87,7 +87,7 @@ export default class CourseDetail extends Component {
                            <p>By {author.firstName + " " + author.lastName}</p>
                        </div>
                        <div className="course--description">
-                           <p>{course.description}</p>
+                           <ReactMarkdown>{course.description}</ReactMarkdown>
                        </div>
                    </div>
                    <div className="grid-25 grid-right">
@@ -100,7 +100,7 @@ export default class CourseDetail extends Component {
                                <li className="course--stats--list--item">
                                    <h4>Materials Needed</h4>
                                    <ul>
-                                       {course.materialsNeeded}
+                                       <ReactMarkdown>{course.materialsNeeded}</ReactMarkdown>
                                    </ul>
                                </li>
                            </ul>

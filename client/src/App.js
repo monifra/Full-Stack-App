@@ -56,7 +56,7 @@ class App extends Component {
                             <Route path='/signout' component={ UserSignOutWithContext } />
                             <Route path='/error' component={Error} />
                             <Route path='/forbidden' component={Forbidden}/>
-                            <Route component={NotFound} />
+                            <Route path='*' component={NotFound} />
                         </Switch>
                     </div>
                 </div>
