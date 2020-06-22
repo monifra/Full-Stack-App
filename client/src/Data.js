@@ -33,7 +33,7 @@ export default class Data {
         if (response.status === 200) {
             return response.json().then(data => data);
         }
-        else if (response.status === 401) {
+        else if (response.status === 401) { //unauthorized
             return null;
         }
         else {
@@ -123,7 +123,7 @@ export default class Data {
         if(response.status === 204){
             return [];
         }
-        else if(response.status === 400){
+        else if(response.status === 403){
             return response.json()
                 .then(data => {
                     return data.errors;

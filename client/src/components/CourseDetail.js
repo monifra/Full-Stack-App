@@ -2,6 +2,8 @@
 import React, {Component}  from 'react';
 import { Link } from 'react-router-dom';
 
+// import Buttons from "./Buttons";
+
 export default class CourseDetail extends Component {
 
     state = {
@@ -46,31 +48,45 @@ export default class CourseDetail extends Component {
 
 
     // no styles in needed materials or description
-    // Link to delete work doesn't work because I don't have delete component figure out
+    // delete gets 401 unauthorized api works Great
     // Error handler to do
 
    render(){
        const {
            course,
            author,
+           authUser,
        } = this.state;
 
-       const courseId = this.props.match.params.id;
+
+
+       // let buttons;
+
+       // if(author.id === authUser.id){
+       //    buttons= <Buttons/>;
+       // }
 
        return(
            <div>
                <div className="actions--bar">
                    <div className="bounds">
                        <div className="grid-100">
-                           <span>
-                               <Link className="button" to={`/courses/${courseId}/update`}>Update Course</Link>
-                               <button
-                                   className="button"
-                                   onClick={() => this.delete()}
-                               >
-                                   Delete Course
-                               </button>
-                           </span>
+
+                           {/*<span>*/}
+                                   {/*<Link*/}
+                                   {/*    className="button"*/}
+                                   {/*    to={`/courses/${courseId}/update`}*/}
+                                   {/*>*/}
+                                   {/*    Update Course*/}
+                                   {/*</Link>*/}
+                                   {/*<button*/}
+                                   {/*    className="button"*/}
+                                   {/*    onClick={() => this.delete()}*/}
+                                   {/*>*/}
+                                   {/*    Delete Course*/}
+                                   {/*</button>*/}
+                               {/*</span>*/}
+                           {this.AddButtons()}
                            <Link className="button button-secondary" to="/">Return to List</Link>
                         </div>
                     </div>
@@ -106,7 +122,26 @@ export default class CourseDetail extends Component {
            </div>
        );
    }
+   //Method for adding buttons
+    AddButtons = () => {
+      // const {context} = this.props;
+      const courseId = this.props.match.params.id;
+      const {authUser, author} = this.state;
+      console.log(author.id);
 
+      if (authUser){
+          if(author.id === authUser.id){
+              return(
+                  <span>
+                      <Link className="button" to={`/courses/${courseId}/update`}>Update Course</Link>
+                      <button className="button" onClick={() => this.delete()}>Delete Course </button>
+                  </span>
+              );
+          }
+      }
+    };
+
+   // Method for deleting course
    delete = () => {
        const { context } = this.props;
        //const authUser = context.authenticatedUser;
@@ -118,7 +153,8 @@ export default class CourseDetail extends Component {
 
        const emailAddress = authUser.emailAddress;
        const password = authUser.password;
-       // const userId = authUser.id;
+       const userId = authUser.id;
+       console.log(userId);
        const courseId = this.props.match.params.id;
        //console.log(emailAddress);
        //console.log(password);
