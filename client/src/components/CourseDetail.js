@@ -1,6 +1,8 @@
 //import React
 import React, {Component}  from 'react';
+//import Link
 import { Link } from 'react-router-dom';
+//import React Markdown to style lists
 import ReactMarkdown from 'react-markdown';
 
 export default class CourseDetail extends Component {
@@ -10,7 +12,7 @@ export default class CourseDetail extends Component {
         author: [],
         authUser: [],
     };
-
+    //early version of fetching this functionality is moved to data.js file
     //  axiosFunction = async() => {
     //     const location = window.location.href.substr((window.location.href.lastIndexOf('/')+1));
     //     //console.log(location);
@@ -29,13 +31,13 @@ export default class CourseDetail extends Component {
         const { context } = this.props;
 
         context.data
-            .getCourse(this.props.match.params.id)
+            .getCourse(this.props.match.params.id)//get course detail data using its id and getCourse method
             .then( course => {
                 if (course) {
                     this.setState({
                         course,
-                        author: course.User,
-                        authUser: context.authenticatedUser
+                        author: course.User, //set user
+                        authUser: context.authenticatedUser //set who is authenticated
                     });
                 }
             })
@@ -56,7 +58,7 @@ export default class CourseDetail extends Component {
                <div className="actions--bar">
                    <div className="bounds">
                        <div className="grid-100">
-
+                           {/*Elements moved to AddButtons Method*/}
                            {/*<span>*/}
                                    {/*<Link*/}
                                    {/*    className="button"*/}
@@ -108,16 +110,17 @@ export default class CourseDetail extends Component {
            </div>
        );
    }
-   //Method add buttons
+
+   //Method add buttons for updating and removing when a user that gets courses detail page is also a course owner
 
     AddButtons = () => {
-      // const {context} = this.props;
+
       const courseId = this.props.match.params.id;
       const {authUser, author} = this.state;
       // console.log(author.id);
 
-      if (authUser){
-          if(author.id === authUser.id){
+      if (authUser){ //if there is any authenticated user
+          if(author.id === authUser.id){ //and a course author is the same as authenticated user show update and delete button
               return(
                   <span>
                       <Link className="button" to={`/courses/${courseId}/update`}>Update Course</Link>
@@ -132,7 +135,6 @@ export default class CourseDetail extends Component {
 
    delete = () => {
        const { context } = this.props;
-       //const authUser = context.authenticatedUser;
        //console.log(authUser);
 
        const {
@@ -148,18 +150,18 @@ export default class CourseDetail extends Component {
        //console.log(password);
 
        context.data
-           .deleteCourse(courseId, emailAddress, password)
-           .then( errors => {
+           .deleteCourse(courseId, emailAddress, password) //delete course using deleteCourse Method from Dada.js file
+           .then( errors => { //if errors add them to state
                if (errors.length) {
                    this.setState({ errors });
                } else {
                    console.log("Course deleted");
-                   this.props.history.push('/courses');
+                   this.props.history.push('/courses'); //redirect to main page
                }
            })
            .catch((err) => {
                console.log(err);
-               this.props.history.push('/error');
+               this.props.history.push('/error'); //throw error page
            });
    }
 
