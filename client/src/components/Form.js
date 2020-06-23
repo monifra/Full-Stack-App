@@ -1,3 +1,5 @@
+//FORM COMPONENT TO MANAGE UPDATE AND CREATE COURSE FORM
+//import React
 import React from 'react';
 
 export default (props) => {
@@ -32,7 +34,7 @@ export default (props) => {
         </div>
     );
 }
-
+//method for correctly displaying a list of errors from API
 function ErrorsDisplay({ errors }) {
     let errorsDisplay = null;
 

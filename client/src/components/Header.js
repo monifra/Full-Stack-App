@@ -1,7 +1,9 @@
+//HEADER COMPONENT WITH MAIN H1 SIGN IN SIGN UP SIGN OUT AND WELCOME MESSAGE
+//If there isn't a user sign in it shows sign in and sign up links else it shows welcome message and sign out link
+//import React
 import React from 'react';
+//import Link
 import { Link } from 'react-router-dom';
-
-//header function
 
 export default class Header extends React.PureComponent {
     render(){

@@ -1,3 +1,5 @@
+//CLASS FOR DETAILS OF COURSE
+
 //import React
 import React, {Component}  from 'react';
 //import Link

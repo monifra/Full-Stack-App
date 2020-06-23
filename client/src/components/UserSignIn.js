@@ -1,5 +1,7 @@
+//USER SIGN IN COMPONENT
 //import React
 import React, {Component}  from 'react';
+//import Link
 import { Link } from 'react-router-dom';
 
 import Form from "./Form";
@@ -58,7 +60,7 @@ export default class UserSignIn extends Component {
             </div>
         )
     }
-
+    //change method
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -69,30 +71,30 @@ export default class UserSignIn extends Component {
             };
         });
     }
-
+    //submit user method
     submit = () => {
         const { context } = this.props;
         const { from } = this.props.location.state || { from: { pathname: '/' } };
         const { emailAddress, password } = this.state;
 
         context.actions
-            .signIn(emailAddress, password)
+            .signIn(emailAddress, password) //sigIn Method
             .then((user) => {
-                if (user === null) {
+                if (user === null) { //if there is no user
                     this.setState(() => {
-                        return { errors: [ 'Oh no! Sign-in was unsuccessful' ] };
+                        return { errors: [ 'Oh no! Sign-in was unsuccessful' ] }; //show unsuccessful sign in message
                     });
                 } else {
-                    this.props.history.push(from);
+                    this.props.history.push(from); //else redirect to the page the user was on earlier on to the main page
                 }
             })
             .catch((error) => {
                 console.error(error);
-                this.props.history.push('/error');
+                this.props.history.push('/error'); //if major error redirect to error page
             });
-    }
-
+    };
+    //cancel method
     cancel = () => {
-        this.props.history.push('/');
+        this.props.history.push('/'); //redirect to main page
     }
 }

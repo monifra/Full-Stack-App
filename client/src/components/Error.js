@@ -1,4 +1,7 @@
+//Error Component which shows when a major error happen
+//import React
 import React from 'react';
+//import Link
 import {Link} from "react-router-dom";
 //when 500 internal server
 export default () => (

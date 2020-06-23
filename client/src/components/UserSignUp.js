@@ -1,7 +1,9 @@
+//USER SIGN UP COMPONENT
 //import React
 import React, {Component}  from 'react';
+//import Link
 import { Link } from 'react-router-dom';
-
+//import Form component to manage form
 import Form from "./Form";
 
 export default class UserSignUp extends Component {
@@ -82,7 +84,7 @@ export default class UserSignUp extends Component {
             </div>
         )
     }
-
+    //change method
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -92,8 +94,8 @@ export default class UserSignUp extends Component {
                 [name]: value
             };
         });
-    }
-
+    };
+    //submit new user method
     submit = () => {
         const { context } = this.props;
         const {
@@ -105,7 +107,7 @@ export default class UserSignUp extends Component {
         } = this.state;
 
         //PLACE FOR ERROR HANDLER IF FOR CONFIRMING PASSWORD
-        // Create user
+        // Create user variable and user if the passwords match
         if(password === confirmPassword){
         const user = {
             firstName,
@@ -115,24 +117,24 @@ export default class UserSignUp extends Component {
         };
 
         context.data
-            .createUser(user)
-            .then( errors => {
+            .createUser(user) //create new user with CreateUser method from data.js file
+            .then( errors => { //if errors set errors state
                 if (errors.length) {
                     this.setState({ errors });
-                } else {
+                } else { //else sign in and console log information
                     console.log(`${firstName} is successfully signed up and authenticated!`);
                     context.actions.signIn(emailAddress, password)
                         .then(() => {
-                            this.props.history.push('/courses');
+                            this.props.history.push('/courses'); //redirect to main page
                         });
                 }
             })
             .catch((err) => {
                 console.log(err);
-                    this.props.history.push('/error');
+                    this.props.history.push('/error'); //if main error redirect to error page
             });
         //ELSE STATEMENT FOR CONFIRMING PASSWORD
-        } else {
+        } else { //if password doesn't match set password error
             //Temporary error console.log
             console.log('Passwords must be the same');
             this.setState(() => {
@@ -140,9 +142,9 @@ export default class UserSignUp extends Component {
             });
         }
     };
-
+    //cancel method
     cancel = () => {
-        this.props.history.push('/');
+        this.props.history.push('/'); //redirect to main page
     }
 
 }

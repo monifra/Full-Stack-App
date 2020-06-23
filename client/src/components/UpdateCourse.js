@@ -1,6 +1,6 @@
 //import React
 import React, {Component}  from 'react';
-
+//import Form Component
 import Form from "./Form";
 
 export default class UpdateCourse extends Component {
@@ -20,7 +20,7 @@ export default class UpdateCourse extends Component {
         const { context } = this.props;
 
         context.data
-            .getCourse(this.props.match.params.id)
+            .getCourse(this.props.match.params.id) //after mounting get course details using getCourse method from Data.js
             .then( course => {
                 if (course) {
                     this.setState({
@@ -138,7 +138,7 @@ export default class UpdateCourse extends Component {
             </div>
         );
     }
-
+    //change method
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -150,7 +150,7 @@ export default class UpdateCourse extends Component {
         });
     };
 
-    //SUBMIT COURSE METHOD
+    //submit course method
     submit = () => {
         const {context} = this.props;
 
@@ -171,6 +171,7 @@ export default class UpdateCourse extends Component {
         // console.log(emailAddress);
         // console.log(password);
 
+        //create course variable
         const course = {
             courseId,
             title,
@@ -182,26 +183,25 @@ export default class UpdateCourse extends Component {
         };
 
         context.data
-            .updateCourse(courseId, course, emailAddress, password)
-            .then( errors => {
-                // s
+            .updateCourse(courseId, course, emailAddress, password) //update course using updateCourse from Data.js
+            .then( errors => { //if there are errors set error state
                 if (errors.length) {
                     this.setState({ errors });
                 } else {
                     console.log("Course updated");
-                    this.props.history.push('/courses/' + courseId);
+                    this.props.history.push('/courses/' + courseId); //redirect to course detail page
                 }
             })
             .catch((err) => {
                 console.log(err);
-                this.props.history.push('/error');
+                this.props.history.push('/error'); //if major error redirect to error page
             });
 
     };
-
+    //cancel method
     cancel = () => {
         const courseId = this.props.match.params.id;
-        const { from } = this.props.location.state || { from: { pathname: `/courses/${courseId}` } };
+        const { from } = this.props.location.state || { from: { pathname: `/courses/${courseId}` } }; //redirection place
         // console.log(courseId);
         this.props.history.push(from);
     };

@@ -1,4 +1,7 @@
+//NOT FOUND COMPONENT TO SHOW WHEN ROUT HAS NOT A MATCH
+//import React
 import React from 'react';
+//import Link
 import {Link} from "react-router-dom";
 //when requested page doesn't exist
 export default () => (

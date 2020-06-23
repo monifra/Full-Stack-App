@@ -1,5 +1,8 @@
+//CLASS FOR THE LIST OF ALL OF THE COURSES
+
 //import React
 import React, {Component}  from 'react';
+//import Link
 import { Link } from 'react-router-dom';
 
 
@@ -7,6 +10,7 @@ export default class Courses extends Component {
     state = {
         courses: [],
     };
+
 //EARLIER VERSION FOR FETCHING WITH AXIOS
     // axiosFunction = () => {
     //     axios.get('http://localhost:5000/api/courses')
@@ -22,15 +26,15 @@ export default class Courses extends Component {
 
         const { context } = this.props;
 
-        context.data.getCourses()
+        context.data.getCourses() //Get all courses from getCourses method in Data.js
             .then( courses => {
                 if (courses) {
-                    this.setState({ courses });
+                    this.setState({ courses }); //store courses in state
                 }
             })
             .catch( err => { // handle rejected promises
                 console.log(err);
-                // this.props.history.push('/error'); // push to history stack
+                this.props.history.push('/error'); // push to history stack
             });
     }
 

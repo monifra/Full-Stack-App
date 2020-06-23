@@ -1,6 +1,8 @@
+//COMPONENT WHICH HANDLES CREATING NEW COURSES WITH HELP OF FORM COMPONENT
+
 //import React
 import React, {Component}  from 'react';
-
+//importing form
 import Form from "./Form";
 
 
@@ -18,7 +20,7 @@ export default class CreateCourse extends Component {
       password: '',
       errors: [],
     };
-
+    //after mounting store user data in state
     componentDidMount(){
         const { context } = this.props;
 
@@ -131,7 +133,7 @@ export default class CreateCourse extends Component {
             </div>
         );
     }
-
+    //change method
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -142,7 +144,7 @@ export default class CreateCourse extends Component {
             };
         });
     };
-
+    //submit method
     submit = () => {
         const { context } = this.props;
         const authUser = context.authenticatedUser;
@@ -162,7 +164,7 @@ export default class CreateCourse extends Component {
         } = this.state;
 
 
-        // Create course
+        // Create course variable
         const course = {
             title,
             description,
@@ -175,25 +177,25 @@ export default class CreateCourse extends Component {
 
 
         context.data
-            .createCourse(emailAddress, password, course)
+            .createCourse(emailAddress, password, course) //create new course with createCourse method from Data.js
             .then( errors => {
                 // console.log(errors);
-                if (errors.length) {
+                if (errors.length) { //if errors store them in state
                     this.setState({ errors });
                 } else {
                     console.log("Course created");
-                    this.props.history.push('/courses');
+                    this.props.history.push('/courses'); //redirect to main page
                 }
             })
             .catch((err) => {
                 console.log(err);
-                this.props.history.push('/error');
+                this.props.history.push('/error'); //redirect to error page
             });
 
     };
-
+    // cancel method
     cancel = () => {
-        const { from } = this.props.location.state || { from: { pathname: '/' } };
+        const { from } = this.props.location.state || { from: { pathname: '/' } }; //redirect
         this.props.history.push(from);
     }
 
