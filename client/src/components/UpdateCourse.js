@@ -1,6 +1,6 @@
 //import React
 import React, {Component}  from 'react';
-//import { Redirect } from 'react-router-dom';
+
 import Form from "./Form";
 
 export default class UpdateCourse extends Component {
@@ -14,40 +14,30 @@ export default class UpdateCourse extends Component {
         materialsNeeded: '',
         userId: '',
         errors: [],
-        //redirect: false,
     };
 
     componentDidMount() {
         const { context } = this.props;
 
-        // const checkIfCourse = this.props.match.params.id;
-        // console.log(checkIfCourse);
-        // if(!checkIfCourse){
-        //     this.setState({
-        //         redirect: true,
-        //     });
-        // } else {
-
-            context.data
-                .getCourse(this.props.match.params.id)
-                .then(course => {
-                    if (course) {
-                        this.setState({
-                            courseId: course.id,
-                            author: course.User,
-                            title: course.title,
-                            description: course.description,
-                            estimatedTime: course.estimatedTime,
-                            materialsNeeded: course.materialsNeeded,
-                            userId: course.userId,
-                        });
-                    }
-                })
-                .catch(err => { // handle rejected promises
-                    console.log(err);
-                    this.props.history.push('/error');
-                });
-        //}
+        context.data
+            .getCourse(this.props.match.params.id)
+            .then( course => {
+                if (course) {
+                    this.setState({
+                        courseId: course.id,
+                        author: course.User,
+                        title: course.title,
+                        description: course.description,
+                        estimatedTime: course.estimatedTime,
+                        materialsNeeded: course.materialsNeeded,
+                        userId: course.userId,
+                    });
+                }
+            })
+            .catch( err => { // handle rejected promises
+                console.log(err);
+                this.props.history.push('/error');
+            });
     }
 
     render(){
@@ -62,10 +52,6 @@ export default class UpdateCourse extends Component {
         } = this.state;
 
         // console.log(errors);
-        // redirect if no course exists
-        //if (this.state.redirect) {
-        //    return <Redirect to="/notfound" />;
-        //}
 
         return(
             <div className="bounds course--detail">
@@ -77,25 +63,25 @@ export default class UpdateCourse extends Component {
                         submit={this.submit}
                         submitButtonText="Update Course"
                         elements={()=>(
-                        <React.Fragment>
-                            <div className="grid-66">
-                                <div className="course--header">
-                                    <h4 className="course--label">Course</h4>
-                                    <div>
-                                        <input
-                                            id="title"
-                                            name="title"
-                                            type="text"
-                                            value={title}
-                                            onChange={this.change}
-                                            className="input-title course--title--input"
-                                            placeholder="Course title..."
-                                             />
+                            <React.Fragment>
+                                <div className="grid-66">
+                                    <div className="course--header">
+                                        <h4 className="course--label">Course</h4>
+                                        <div>
+                                            <input
+                                                id="title"
+                                                name="title"
+                                                type="text"
+                                                value={title}
+                                                onChange={this.change}
+                                                className="input-title course--title--input"
+                                                placeholder="Course title..."
+                                            />
+                                        </div>
+                                        <p>By {author.firstName + " " + author.lastName}</p>
                                     </div>
-                                    <p>By {author.firstName + " " + author.lastName}</p>
-                                </div>
-                                <div className="course--description">
-                                    <div>
+                                    <div className="course--description">
+                                        <div>
                                         <textarea
                                             id="description"
                                             name="description"
@@ -104,29 +90,29 @@ export default class UpdateCourse extends Component {
                                             onChange={this.change}
                                             placeholder="Course description..."
                                         />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="grid-25 grid-right">
-                                <div className="course--stats">
-                                    <ul className="course--stats--list">
-                                        <li className="course--stats--list--item">
-                                            <h4>Estimated Time</h4>
-                                            <div>
-                                                <input
-                                                    id="estimatedTime"
-                                                    name="estimatedTime"
-                                                    type="text"
-                                                    className="course--time--input"
-                                                    value={estimatedTime}
-                                                    onChange={this.change}
-                                                    placeholder="Hours"
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="course--stats--list--item">
-                                            <h4>Materials Needed</h4>
-                                            <div>
+                                <div className="grid-25 grid-right">
+                                    <div className="course--stats">
+                                        <ul className="course--stats--list">
+                                            <li className="course--stats--list--item">
+                                                <h4>Estimated Time</h4>
+                                                <div>
+                                                    <input
+                                                        id="estimatedTime"
+                                                        name="estimatedTime"
+                                                        type="text"
+                                                        className="course--time--input"
+                                                        value={estimatedTime}
+                                                        onChange={this.change}
+                                                        placeholder="Hours"
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="course--stats--list--item">
+                                                <h4>Materials Needed</h4>
+                                                <div>
                                                 <textarea
                                                     id="materialsNeeded"
                                                     name="materialsNeeded"
@@ -135,19 +121,19 @@ export default class UpdateCourse extends Component {
                                                     onChange={this.change}
                                                     placeholder="Materials"
                                                 />
-                                            </div>
-                                        </li>
-                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            {/*<div className="grid-100 pad-bottom">*/}
-                            {/*    <button className="button" type="submit">Update Course</button>*/}
-                            {/*    <button className="button button-secondary"*/}
-                            {/*            onClick="event.preventDefault(); location.href='course-detail.html';">Cancel*/}
-                            {/*    </button>*/}
-                            {/*</div>*/}
-                        </React.Fragment>
-                    )} />
+                                {/*<div className="grid-100 pad-bottom">*/}
+                                {/*    <button className="button" type="submit">Update Course</button>*/}
+                                {/*    <button className="button button-secondary"*/}
+                                {/*            onClick="event.preventDefault(); location.href='course-detail.html';">Cancel*/}
+                                {/*    </button>*/}
+                                {/*</div>*/}
+                            </React.Fragment>
+                        )} />
                 </div>
             </div>
         );

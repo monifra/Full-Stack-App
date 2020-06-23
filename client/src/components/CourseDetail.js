@@ -45,8 +45,6 @@ export default class CourseDetail extends Component {
             });
     }
 
-    //!!! delete gets 401 unauthorized api works Great !!!
-
    render(){
        const {
            course,
@@ -150,7 +148,7 @@ export default class CourseDetail extends Component {
        //console.log(password);
 
        context.data
-           .deleteCourse(emailAddress, password, courseId)
+           .deleteCourse(courseId, emailAddress, password)
            .then( errors => {
                if (errors.length) {
                    this.setState({ errors });
