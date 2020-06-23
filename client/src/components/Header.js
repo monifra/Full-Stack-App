@@ -1,14 +1,13 @@
-//HEADER COMPONENT WITH MAIN H1 SIGN IN SIGN UP SIGN OUT AND WELCOME MESSAGE
+//STATELESS HEADER COMPONENT WITH MAIN H1 SIGN IN SIGN UP SIGN OUT AND WELCOME MESSAGE
 //If there isn't a user sign in it shows sign in and sign up links else it shows welcome message and sign out link
 //import React
 import React from 'react';
 //import Link
 import { Link } from 'react-router-dom';
 
-export default class Header extends React.PureComponent {
-    render(){
+export default (props) => {
 
-        const { context } = this.props;
+        const { context } = props;
         const authUser = context.authenticatedUser;
         //console.log(authUser);
 
@@ -35,7 +34,6 @@ export default class Header extends React.PureComponent {
                 </div>
             </div>
         );
-    }
 };
 
 
